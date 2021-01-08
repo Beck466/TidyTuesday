@@ -21,6 +21,6 @@ My contributions to the [#TidyTuesday challenge](https://github.com/rfordatascie
 ***
 
 ### [Week 2020/39](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_39) Himalayan Climbers by [The Himalayan Database](https://www.himalayandatabase.com/)
-![./plots/2020_39/2020_39_HimalayanClimbers.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2020_39/2020_39_HimalayanClimber.png)
+![./plots/2020_39/2020_39_HimalayanClimbers.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2020_39/2020_39_HimalayanClimbers.png)
 
 ***
