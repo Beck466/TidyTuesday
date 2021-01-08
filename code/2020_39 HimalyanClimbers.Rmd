@@ -1,0 +1,67 @@
+---
+title: "2020 Week 39 - Himalayan Climbers"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidytuesdayR)
+library(cowplot)
+```
+
+Get data
+```{r}
+tuesdata <- tidytuesdayR::tt_load(2020, week = 39)
+
+members <- tuesdata$members
+peaks <- tuesdata$peaks
+```
+
+Make plot
+```{r}
+#How many people failed, and at what point did they turn back (%)
+
+get_png <- function(filename) {
+  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE, width=unit(1,"npc"), height=unit(1,"npc"))
+}
+logo <- get_png("img/mountains.png")
+
+plot_data <- members %>% 
+  filter(!success) %>% 
+  select(peak_name, highpoint_metres) %>% 
+  left_join(peaks %>% select(peak_name, height_metres), by = c("peak_name")) %>% 
+  mutate(distance = highpoint_metres / height_metres) %>% 
+  filter(!is.na(distance)) %>% 
+  select(distance) %>% 
+  mutate(distance = ifelse(distance > 1, 1, distance))
+
+p <- ggplot_build(ggplot(plot_data)+
+  geom_density(aes(x = distance)))$data[[1]] %>% 
+  select(y, x) %>% 
+  ggplot()+
+  annotation_custom(logo, xmin = 0.504, xmax = 0.999, ymin = 0, ymax = 5.3)+
+  geom_ribbon(aes(x = x, ymin = y, ymax = max(y)+0.5), fill = "white")+
+  labs(x = "% of Peak Height")+
+  ggtitle("Position of Peak Height Failed Climbers Reached")+
+  theme(plot.background = element_rect(fill = "white", colour = "white"),
+        panel.border = element_rect(fill = NA, colour = NA),
+        panel.background = element_rect(fill = NA, colour = NA),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.title = element_text(colour = "black", size = 20, hjust = 0.5),
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(colour = "black"),
+        axis.text.x = element_text(colour = "black"))+
+  scale_x_continuous(labels = scales::percent)
+```
+
+Save plot
+```{r}
+ggdraw(p)
+ggsave(here::here("plots", "2020_39", "2020_39_HimalayanClimbers.png"), 
+       width = 15, height = 9, device = "png")
+```
+
