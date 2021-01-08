@@ -37,7 +37,7 @@ p <- ggplot(plot_data)+
   geom_point(aes(x = x, y = imdb_rating, colour = season), size = 1, shape = 1)+
   geom_line(aes(x = x, y = avg_rating, colour = season), size = 1)+
   geom_segment(aes(x = x, xend = x, y = imdb_rating, yend = avg_rating, colour = season))+
-  geom_text(aes(x = placement + 7, y = avg_rating + 0.05, label = season, colour = season), size = 6)+
+  geom_text(aes(x = placement + 11, y = avg_rating + 0.07, label = season, colour = season), size = 9)+
   annotation_custom(logo, xmin = 8, xmax = 90, ymin = 6.5, ymax = 7.3)+
   theme_bw()+
   theme_minimal()+
