@@ -21,7 +21,7 @@ Make plot
 #Show the ratings of the seasons and individual episodes
 
 get_png <- function(filename) {
-  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE)
+  grid::rasterGrob(png::readPNG(here::here("img", filename)), interpolate = TRUE)
 }
 logo <- get_png("img/the_office_logo.png")
 

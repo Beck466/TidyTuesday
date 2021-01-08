@@ -23,9 +23,9 @@ Make plot
 #How many people failed, and at what point did they turn back (%)
 
 get_png <- function(filename) {
-  grid::rasterGrob(png::readPNG(filename), interpolate = TRUE, width=unit(1,"npc"), height=unit(1,"npc"))
+  grid::rasterGrob(png::readPNG(here::here("img", filename)), interpolate = TRUE, width=unit(1,"npc"), height=unit(1,"npc"))
 }
-logo <- get_png("img/mountains.png")
+logo <- get_png("mountains.png")
 
 plot_data <- members %>% 
   filter(!success) %>% 
@@ -49,12 +49,12 @@ p <- ggplot_build(ggplot(plot_data)+
         panel.background = element_rect(fill = NA, colour = NA),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
-        plot.title = element_text(colour = "black", size = 20, hjust = 0.5),
+        plot.title = element_text(colour = "black", size = 40, hjust = 0.5),
         axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
-        axis.title.x = element_text(colour = "black"),
-        axis.text.x = element_text(colour = "black"))+
+        axis.title.x = element_text(colour = "black", size = 20),
+        axis.text.x = element_text(colour = "black", size = 20))+
   scale_x_continuous(labels = scales::percent)
 ```
 
