@@ -23,7 +23,7 @@ Make plot
 get_png <- function(filename) {
   grid::rasterGrob(png::readPNG(here::here("img", filename)), interpolate = TRUE)
 }
-logo <- get_png("img/the_office_logo.png")
+logo <- get_png("the_office_logo.png")
 
 plot_data <- office_ratings  %>% 
   mutate(x = row_number(),
@@ -38,16 +38,16 @@ p <- ggplot(plot_data)+
   geom_line(aes(x = x, y = avg_rating, colour = season), size = 1)+
   geom_segment(aes(x = x, xend = x, y = imdb_rating, yend = avg_rating, colour = season))+
   geom_text(aes(x = placement + 7, y = avg_rating + 0.05, label = season, colour = season), size = 6)+
-  annotation_custom(logo, xmin = 8, xmax = 90, ymin = 7, ymax = 7.8)+
+  annotation_custom(logo, xmin = 8, xmax = 90, ymin = 6.5, ymax = 7.3)+
   theme_bw()+
   theme_minimal()+
   theme(panel.border = element_rect(fill = NA, colour = NA),
         panel.background = element_rect(fill = NA, colour = NA),
         plot.background = element_rect(fill = "black", colour = "black"),
         panel.grid.major.y = element_line(colour = "#262626"),
-        axis.title.y = element_text(colour = "white"),
-        axis.text.y = element_text(colour = "white"),
-        plot.title = element_text(colour = "white", size = 20, hjust = 0.5),
+        axis.title.y = element_text(colour = "white", size = 20),
+        axis.text.y = element_text(colour = "white", size = 20),
+        plot.title = element_text(colour = "white", size = 40, hjust = 0.5),
         axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks = element_blank(),
