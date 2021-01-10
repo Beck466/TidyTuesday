@@ -1,0 +1,62 @@
+---
+title: "2020 Week 39 - Himalayan Climbers"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidytuesdayR)
+library(cowplot)
+```
+
+Get data
+```{r}
+tuesdata <- tidytuesdayR::tt_load(2019, week = 3)
+
+launches <- tuesdata$launches
+```
+
+Make plot
+```{r}
+#Show distribution of launches by year
+
+plot_data <- launches %>% 
+  arrange(launch_date) %>% 
+  group_by(launch_year) %>% 
+  mutate(number = row_number()) %>% 
+  select(launch_year, category, number)
+
+p <- ggplot(plot_data)+
+  geom_jitter(aes(x = launch_year, y = number, colour = category, size = category, alpha = category), shape = 8)+
+  scale_x_continuous(breaks = seq(from = min(plot_data$launch_year), to = max(plot_data$launch_year), by = 2),
+                     labels = seq(from = min(plot_data$launch_year), to = max(plot_data$launch_year), by = 2))+
+  scale_colour_manual(values = c("O" = "white", "F" = "red"))+
+  scale_size_manual(values = c("O" = 0.05, "F" = 1))+
+  scale_alpha_manual(values = c("O" = 0.2, "F" = 1))+
+  coord_polar()+
+  ggtitle("Space Launches by Year")+
+  labs(caption = "White indicates sucessful launch")+
+  theme(panel.border = element_rect(fill = NA, colour = NA),
+        panel.background = element_rect(fill = NA, colour = NA),
+        plot.background = element_rect(fill = "black", colour = "black"),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(colour = "#262626"),
+        legend.position = "none",
+        plot.title = element_text(colour = "white", size = 30, hjust = 0.5),
+        plot.caption = element_text(colour = "white", size = 20, hjust = 0.5),
+        axis.title.x = element_blank(),
+        axis.text.x = element_text(colour = "white", size = 20),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank())
+```
+
+Save plot
+```{r}
+ggdraw(p)
+ggsave(here::here("plots", "2019_3", "2019_3_SpaceLaunches.png"), 
+       width = 15, height = 9, device = "png")
+```
+
