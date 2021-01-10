@@ -42,7 +42,8 @@ p <- ggplot_build(ggplot(plot_data)+
   ggplot()+
   annotation_custom(logo, xmin = 0.504, xmax = 0.999, ymin = 0, ymax = 5.3)+
   geom_ribbon(aes(x = x, ymin = y, ymax = max(y)+0.5), fill = "white")+
-  labs(x = "% of Peak Height")+
+  labs(x = "% of Peak Height",
+       y = "Number of Climbers")+
   ggtitle("Position of Peak Height Failed Climbers Reached")+
   theme(plot.background = element_rect(fill = "white", colour = "white"),
         panel.border = element_rect(fill = NA, colour = NA),
@@ -50,12 +51,12 @@ p <- ggplot_build(ggplot(plot_data)+
         panel.grid.minor = element_blank(),
         panel.grid.major = element_blank(),
         plot.title = element_text(colour = "black", size = 40, hjust = 0.5),
-        axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
+        axis.title.y = element_text(colour = "black", size = 20),
+        axis.text.y = element_text(colour = "black", size = 20),
         axis.title.x = element_text(colour = "black", size = 20),
         axis.text.x = element_text(colour = "black", size = 20))+
-  scale_x_continuous(labels = scales::percent)
+  scale_x_continuous(labels = scales::percent)+
+  scale_y_continuous(position = "right", breaks = seq(from = 0, to = 5, by = 1))
 ```
 
 Save plot

@@ -8,12 +8,19 @@ My contributions to the [#TidyTuesday challenge](https://github.com/rfordatascie
   <summary>Contributions (click to expand)</summary>
   
 <!-- toc -->
+* **Challenges 2019**
+  - 2019/3 [Space Launches](https://github.com/Beck466/TidyTuesday/tree/master/plots/2019_3)
 * **Challenges 2020**
   - 2020/12 [The Office](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_12)
   - 2020/39 [Himalayan Climbers](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_39)
 <!-- tocstop -->
 
 </details>
+
+### [Week 2019/3](https://github.com/Beck466/TidyTuesday/tree/master/plots/2019_3) Space Launches by [Jonathan McDowell's JSR Launch Vehicle Database](http://www.planet4589.org/space/lvdb/index.html)
+![./plots/2020_12/2020_12_TheOffice.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2019_3/2019_3_SpaceLaunches.png)
+
+***
 
 ### [Week 2020/12](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_12) The Office by [IMDb via data.world](https://data.world/anujjain7/the-office-imdb-ratings-dataset)
 ![./plots/2020_12/2020_12_TheOffice.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2020_12/2020_12_TheOffice.png)
