@@ -32,8 +32,8 @@ p <- ggplot(plot_data)+
   scale_x_continuous(breaks = seq(from = min(plot_data$launch_year), to = max(plot_data$launch_year), by = 2),
                      labels = seq(from = min(plot_data$launch_year), to = max(plot_data$launch_year), by = 2))+
   scale_colour_manual(values = c("O" = "white", "F" = "red"))+
-  scale_size_manual(values = c("O" = 0.05, "F" = 1))+
-  scale_alpha_manual(values = c("O" = 0.2, "F" = 1))+
+  scale_size_manual(values = c("O" = 1, "F" = 1.5))+
+  scale_alpha_manual(values = c("O" = 0.5, "F" = 1))+
   coord_polar()+
   ggtitle("Space Launches by Year")+
   labs(caption = "White indicates sucessful launch")+
