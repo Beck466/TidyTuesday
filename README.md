@@ -11,6 +11,7 @@ My contributions to the [#TidyTuesday challenge](https://github.com/rfordatascie
 * **Challenges 2019**
   - 2019/3 [Space Launches](https://github.com/Beck466/TidyTuesday/tree/master/plots/2019_3)
 * **Challenges 2020**
+  - 2020/3 [Passwords](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_3)
   - 2020/12 [The Office](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_12)
   - 2020/39 [Himalayan Climbers](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_39)
 <!-- tocstop -->
@@ -18,7 +19,12 @@ My contributions to the [#TidyTuesday challenge](https://github.com/rfordatascie
 </details>
 
 ### [Week 2019/3](https://github.com/Beck466/TidyTuesday/tree/master/plots/2019_3) Space Launches by [Jonathan McDowell's JSR Launch Vehicle Database](http://www.planet4589.org/space/lvdb/index.html)
-![./plots/2020_12/2020_12_TheOffice.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2019_3/2019_3_SpaceLaunches.png)
+![./plots/2019_3/2019_3_SpaceLaunches.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2019_3/2019_3_SpaceLaunches.png)
+
+***
+
+### [Week 2020/3](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_3) Passwords by [Information is Beautiful](https://docs.google.com/spreadsheets/d/1cz7TDhm0ebVpySqbTvrHrD3WpxeyE4hLZtifWSnoNTQ/edit#gid=21)
+![./plots/2020_3/2020_3_Passwords.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2020_3/2020_3_Passwords.png)
 
 ***
 
