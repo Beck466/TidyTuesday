@@ -13,6 +13,7 @@ My contributions to the [#TidyTuesday challenge](https://github.com/rfordatascie
 * **Challenges 2020**
   - 2020/3 [Passwords](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_3)
   - 2020/12 [The Office](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_12)
+  - 2020/34 [Extinct Plants](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_34)
   - 2020/39 [Himalayan Climbers](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_39)
 <!-- tocstop -->
 
@@ -30,6 +31,11 @@ My contributions to the [#TidyTuesday challenge](https://github.com/rfordatascie
 
 ### [Week 2020/12](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_12) The Office by [IMDb via data.world](https://data.world/anujjain7/the-office-imdb-ratings-dataset)
 ![./plots/2020_12/2020_12_TheOffice.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2020_12/2020_12_TheOffice.png)
+
+***
+
+### [Week 2020/34](https://github.com/Beck466/TidyTuesday/tree/master/plots/2020_34) Extinct Plants by [IUCN Red List](https://www.iucnredlist.org/)
+![./plots/2020_34/2020_34_ExtinctPlants.png](https://raw.githubusercontent.com/Beck466/TidyTuesday/master/plots/2020_34/2020_34_ExtinctPlants.png)
 
 ***
 

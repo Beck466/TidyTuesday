@@ -1,0 +1,97 @@
+---
+title: "2020 Week 34 - Extinct Plants"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidytuesdayR)
+library(grid)
+library(cowplot)
+library(RColorBrewer)
+```
+
+Get data
+```{r}
+tuesdata <- tidytuesdayR::tt_load(2020, week = 34)
+
+threats <- tuesdata$threats
+```
+
+Make plot
+```{r}
+#Make a tree showing extinct plants by continent
+
+plot_data <- threats %>% 
+  mutate(extinct = case_when(str_detect(year_last_seen, "Before") ~ "1900",
+                                  str_detect(year_last_seen, "-") ~ str_replace(year_last_seen, '.+-(.+)', '\\1'))) %>% 
+  mutate(years_extinct = 2021 - as.numeric(extinct),
+         rev_years_extinct = years_extinct * -1,
+         years_extinct = factor(years_extinct, levels = c(1, 121, 102, 82, 62, 42, 22))) %>% 
+  arrange(years_extinct, continent) %>% 
+  mutate(binomial_name = factor(binomial_name, levels = unique(binomial_name)),
+         years_extinct = as.character(years_extinct),
+         years_extinct = as.numeric(years_extinct),
+         continent = ifelse(years_extinct == 1, "<1 year", continent)) %>% 
+  distinct(binomial_name, continent, years_extinct, rev_years_extinct) %>% 
+  mutate(colour = row_number()) %>% 
+  filter(!is.na(continent))
+
+make_gradient <- function(deg = 45, n = 100, cols = blues9) {
+  cols <- colorRampPalette(cols)(n + 1)
+  rad <- deg / (180 / pi)
+  mat <- matrix(
+    data = rep(seq(0, 1, length.out = n) * cos(rad), n),
+    byrow = TRUE,
+    ncol = n
+  ) +
+  matrix(
+    data = rep(seq(0, 1, length.out = n) * sin(rad), n),
+    byrow = FALSE,
+    ncol = n
+  )
+  mat <- mat - min(mat)
+  mat <- mat / max(mat)
+  mat <- 1 + mat * n
+  mat <- matrix(data = cols[round(mat)], ncol = n)
+  grid::rasterGrob(
+    image = mat,
+    width = unit(1, "npc"),
+    height = unit(1, "npc"), 
+    interpolate = TRUE
+  )
+}
+
+g <- make_gradient(deg = 90, n = 500, cols = c("#2171b5", "#4292c6", "#6baed6", "#9ecae1", "#c6dbef", "#00441b"))
+
+p <- ggplot(plot_data)+
+  annotation_custom(grob = g, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf)+
+  geom_segment(aes(y = binomial_name, yend = binomial_name, x = rev_years_extinct, xend = years_extinct, colour = continent), size = 1.5) +
+  theme_bw()+
+  ggtitle("Time since Extinction for each Continent")+
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.title = element_blank(),
+        legend.position = c(0.91,0.8),
+        legend.key = element_blank(),
+        legend.background = element_blank(),
+        plot.title = element_text(hjust = 0.5, size = 20),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  scale_colour_manual(values = c("<1 year" = "#8c510a",
+                                 "Africa" = "#00441b",
+                                 "Asia" = "#006d2c",
+                                 "Europe" = "#238b45",
+                                 "North America" = "#41ab5d",
+                                 "Oceania" = "#74c476",
+                                 "South America" = "#a1d99b"))
+```
+
+Save plot
+```{r}
+ggdraw(p)
+ggsave(here::here("plots", "2020_34", "2020_34_ExtinctPlants.png"), 
+       width = 15, height = 9, device = "png")
+```
