@@ -27,14 +27,13 @@ plot_data <- threats %>%
   mutate(extinct = case_when(str_detect(year_last_seen, "Before") ~ "1900",
                                   str_detect(year_last_seen, "-") ~ str_replace(year_last_seen, '.+-(.+)', '\\1'))) %>% 
   mutate(years_extinct = 2021 - as.numeric(extinct),
-         rev_years_extinct = years_extinct * -1,
          years_extinct = factor(years_extinct, levels = c(1, 121, 102, 82, 62, 42, 22))) %>% 
   arrange(years_extinct, continent) %>% 
   mutate(binomial_name = factor(binomial_name, levels = unique(binomial_name)),
          years_extinct = as.character(years_extinct),
          years_extinct = as.numeric(years_extinct),
          continent = ifelse(years_extinct == 1, "<1 year", continent)) %>% 
-  distinct(binomial_name, continent, years_extinct, rev_years_extinct) %>% 
+  distinct(binomial_name, continent, years_extinct) %>% 
   mutate(colour = row_number()) %>% 
   filter(!is.na(continent))
 
@@ -67,19 +66,23 @@ g <- make_gradient(deg = 90, n = 500, cols = c("#2171b5", "#4292c6", "#6baed6", 
 
 p <- ggplot(plot_data)+
   annotation_custom(grob = g, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf)+
-  geom_segment(aes(y = binomial_name, yend = binomial_name, x = rev_years_extinct, xend = years_extinct, colour = continent), size = 1.5) +
+  geom_segment(aes(y = binomial_name, yend = binomial_name, x = -years_extinct, xend = years_extinct, colour = continent), size = 1.5) +
   theme_bw()+
   ggtitle("Time since Extinction for each Continent")+
   theme(axis.title = element_blank(),
-        axis.text = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_text(vjust = -0.7,
+                                   margin = margin(t = -25, b = 10)),
         axis.ticks = element_blank(),
         legend.title = element_blank(),
         legend.position = c(0.91,0.8),
+        legend.text = element_text(size = 20),
         legend.key = element_blank(),
         legend.background = element_blank(),
         plot.title = element_text(hjust = 0.5, size = 40),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()) +
+  scale_x_continuous(breaks = c(0, 25,50,75,100,125))+
   scale_colour_manual(values = c("<1 year" = "#8c510a",
                                  "Africa" = "#00441b",
                                  "Asia" = "#006d2c",
